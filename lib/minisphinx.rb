@@ -78,7 +78,6 @@ module Minisphinx
         "sql_host = #{db[:host]}",
         "sql_pass = #{db[:password]}",
         "sql_user = #{db[:username]}",
-        "sql_query_info = #{sql_query_info}",
         fields.collect do |field|
           "sql_attr_#{field.type} = #{field.name}" if field.type != :text
         end,
@@ -108,10 +107,6 @@ module Minisphinx
       delta_min = "'#{delta_min.to_s(:db)}'" if delta_min.kind_of?(Time) or delta_min.kind_of?(Date)
       "SELECT #{table_name}.id AS doc_id, #{fields.join(', ')} " <<
         "FROM #{table_name} #{joins.join(' ')} WHERE #{delta_field} >= #{delta_min}"
-    end
-
-    def sql_query_info
-      "SELECT * FROM #{table_name} WHERE id = $id"
     end
 
     def self.config
@@ -231,7 +226,6 @@ module Minisphinx
 
     def self.config
       @config ||= {
-        :charset_type => 'utf-8',
         :min_word_len => 1,
         :html_strip   => 0,
         :docinfo      => 'extern',
