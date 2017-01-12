@@ -7,3 +7,25 @@ COPYRIGHT
 =========
 
 Copyright (c) 2009 Justin Balthrop. See LICENSE for details.
+
+
+==Setup:
+
+* Install bundler
+    gem install bundler
+
+* Checkout code
+    git clone git@github.com:geni/minisphinx.git
+
+* Install bundled gems
+    cd minisphinx
+    bundle install --path bundle
+
+* Create the database for testing
+  psql -U postgres
+    create database minisphinx_test;
+    \q
+
+* Run the test suite
+    bundle exec rake test
+

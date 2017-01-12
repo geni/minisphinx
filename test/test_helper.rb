@@ -5,6 +5,7 @@ require 'mocha/setup'
 require 'pp'
 
 require 'active_record'
+require 'active_support'
 require 'minisphinx'
 require 'minisphinx/charset'
 
